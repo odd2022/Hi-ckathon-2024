@@ -4,3 +4,5 @@ As part of my master's program, I participated in a hackathon focused on environ
 
 ## Context
 Groundwater is a critical resource for managing water supplies, especially during summer droughts. Accurately forecasting groundwater levels helps plan water usage, prevent shortages, and support sustainable water resource management. This challenge, rooted in the pressing issues of climate change, required a combination of skills in machine learning, data analysis, and an understanding of hydrological processes.
+
+I share the work I did during this contest
