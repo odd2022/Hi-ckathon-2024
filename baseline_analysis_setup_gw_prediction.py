@@ -1,4 +1,4 @@
-# # ============ Import Needed Models  ============ 
+# ============ Import Needed Models  ============ 
 import pandas as pd
 import numpy as np
 
@@ -91,7 +91,7 @@ y_test = y_test.map(custom_mapping)
 
 # ============ XGBClassifier ============
 print("Training XGBoost Model")
-model = xgb.XGBClassifier(use_label_encoder=False, eval_metric='mlogloss')
+model = xgb.XGBClassifier(use_label_encoder = False, eval_metric = 'mlogloss')
 model.fit(X_train, y_train)
 
 y_pred = model.predict(X_test)
@@ -100,7 +100,7 @@ y_pred_labels = pd.Series(y_pred).map(reverse_mapping)
 y_test_labels = y_test.map(reverse_mapping)
 
 # Compute the F1 Score
-f1 = f1_score(y_test_labels, y_pred_labels, average='weighted')
+f1 = f1_score(y_test_labels, y_pred_labels, average = 'weighted')
 print(f"F1-Score (weighted): {f1:.4f}")
 
 
@@ -109,11 +109,11 @@ columns_full_nan = [col for col in X_train.columns if X_train[col].isna().all()]
 X_train = X_train.drop(columns = columns_full_nan)
 X_test = X_test.drop(columns = columns_full_nan)
 
-imputer = SimpleImputer(strategy='median')
+imputer = SimpleImputer(strategy = 'median')
 imputed_data = imputer.fit_transform(X_train)
 
-X_train = pd.DataFrame(imputer.fit_transform(X_train), columns=X_train.columns)
-X_test = pd.DataFrame(imputer.transform(X_test), columns=X_test.columns)
+X_train = pd.DataFrame(imputer.fit_transform(X_train), columns = X_train.columns)
+X_test = pd.DataFrame(imputer.transform(X_test), columns = X_test.columns)
 
 
 # ============ Extra Trees Model ============ 
@@ -188,7 +188,9 @@ y_test_labels = y_test.map(reverse_mapping)
 f1 = f1_score(y_test_labels, y_pred_labels, average = 'weighted')
 print(f"F1-Score (weighted) with Random Forest's best model: {f1:.4f}")
 
-#============ Hyperparameter tuning for GBoost ============ 
+
+
+#============ Hyperparameter tuning for XGBoost ============ 
 print("Tuning parameters for GBoost")
 
 param_dist = {
@@ -228,7 +230,7 @@ y_pred = best_model.predict(X_test)
 y_pred_labels = pd.Series(y_pred).map(reverse_mapping)
 y_test_labels = y_test.map(reverse_mapping)
 
-f1 = f1_score(y_test_labels, y_pred_labels, average='weighted')
+f1 = f1_score(y_test_labels, y_pred_labels, average = 'weighted')
 print(f"F1-Score (weighted) with best model: {f1:.4f}")
 
 
